@@ -199,7 +199,7 @@ function Index() {
 
       <section id="about" className="gfa-section">
         <div className="mx-auto grid max-w-6xl gap-10 px-5 md:grid-cols-[1.1fr_0.9fr]">
-          <div>
+          <div className="gfa-reveal-io">
             <p className="gfa-eyebrow mb-3">Giới thiệu</p>
             <h2 className="gfa-h2 text-3xl font-semibold sm:text-4xl">Về GFA Việt Nam</h2>
             <p className="mt-5 text-[color:var(--gfa-mist)] leading-relaxed">
@@ -209,7 +209,7 @@ function Index() {
               Bên cạnh dịch vụ thuê xe, GFA còn vận hành GFA Auto và GFA Tour.
             </p>
           </div>
-          <div className="gfa-card p-6">
+          <div className="gfa-card p-6 gfa-reveal-io" style={{ transitionDelay: "120ms" }}>
             <p className="gfa-eyebrow mb-4">Liên hệ nhanh</p>
             <ul className="space-y-3 text-sm">
               <li><a href={`tel:${PHONE_PRIMARY.tel}`} className="gfa-navlink underline decoration-[color:var(--gfa-line)]">Hotline: {PHONE_PRIMARY.display}</a></li>
@@ -223,14 +223,14 @@ function Index() {
 
       <section id="services" className="gfa-section gfa-section-alt">
         <div className="mx-auto max-w-6xl px-5">
-          <p className="gfa-eyebrow mb-3">Dịch vụ</p>
-          <h2 className="gfa-h2 max-w-xl text-3xl font-semibold sm:text-4xl">Thuê xe theo nhu cầu của bạn</h2>
+          <p className="gfa-eyebrow mb-3 gfa-reveal-io">Dịch vụ</p>
+          <h2 className="gfa-h2 max-w-xl text-3xl font-semibold sm:text-4xl gfa-reveal-io" style={{ transitionDelay: "60ms" }}>Thuê xe theo nhu cầu của bạn</h2>
           <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {SERVICES.map((s) => (
-              <div key={s.title} className="gfa-card p-6">
-                <div className="gfa-icon-ring mb-4 text-base">•</div>
-                <h3 className="gfa-h3 text-lg font-semibold">{s.title}</h3>
-                <p className="mt-2 text-sm text-[color:var(--gfa-mist)] leading-relaxed">{s.desc}</p>
+            {SERVICES.map((sv, i) => (
+              <div key={sv.title} className="gfa-card p-6 gfa-reveal-io" style={{ transitionDelay: `${120 + i * 70}ms` }}>
+                <div className="gfa-icon-ring gfa-icon-pulse mb-4 text-base">•</div>
+                <h3 className="gfa-h3 text-lg font-semibold">{sv.title}</h3>
+                <p className="mt-2 text-sm text-[color:var(--gfa-mist)] leading-relaxed">{sv.desc}</p>
               </div>
             ))}
           </div>
@@ -244,11 +244,11 @@ function Index() {
         </div>
 
         <div className="mx-auto mt-16 max-w-6xl px-5">
-          <p className="gfa-eyebrow mb-3">Dòng xe tiêu biểu</p>
-          <h2 className="gfa-h2 max-w-xl text-3xl font-semibold sm:text-4xl">Một số dòng xe trong đội xe GFA</h2>
+          <p className="gfa-eyebrow mb-3 gfa-reveal-io">Dòng xe tiêu biểu</p>
+          <h2 className="gfa-h2 max-w-xl text-3xl font-semibold sm:text-4xl gfa-reveal-io" style={{ transitionDelay: "60ms" }}>Một số dòng xe trong đội xe GFA</h2>
           <div className="mt-10 grid gap-6 sm:grid-cols-3">
-            {FLEET_MODELS.map((m) => (
-              <div key={m.name} className="gfa-fleet-card">
+            {FLEET_MODELS.map((m, i) => (
+              <div key={m.name} className="gfa-fleet-card gfa-reveal-io" style={{ transitionDelay: `${120 + i * 90}ms` }}>
                 <img src={m.img} alt={m.name} loading="lazy" className="gfa-fleet-photo" />
                 <div className="gfa-fleet-caption">
                   <h3 className="gfa-h3 text-base font-semibold">{m.name}</h3>
@@ -264,7 +264,7 @@ function Index() {
       </section>
 
       <section id="trust" className="gfa-section">
-        <div className="mx-auto max-w-4xl px-5 text-center">
+        <div className="mx-auto max-w-4xl px-5 text-center gfa-reveal-io">
           <p className="gfa-eyebrow mb-3">Được khách hàng đánh giá</p>
           <h2 className="gfa-h2 text-3xl font-semibold sm:text-4xl">4.7 trên Google</h2>
           <p className="mt-4 text-[color:var(--gfa-mist)]">Xếp hạng dựa trên đánh giá của khách hàng trên Google Maps.</p>
@@ -277,22 +277,22 @@ function Index() {
 
       <section id="location" className="gfa-section gfa-section-alt">
         <div className="mx-auto max-w-6xl px-5">
-          <p className="gfa-eyebrow mb-3">Giờ làm việc &amp; Địa chỉ</p>
-          <h2 className="gfa-h2 max-w-xl text-3xl font-semibold sm:text-4xl">Ghé thăm văn phòng GFA</h2>
+          <p className="gfa-eyebrow mb-3 gfa-reveal-io">Giờ làm việc &amp; Địa chỉ</p>
+          <h2 className="gfa-h2 max-w-xl text-3xl font-semibold sm:text-4xl gfa-reveal-io" style={{ transitionDelay: "60ms" }}>Ghé thăm văn phòng GFA</h2>
           <div className="mt-10 grid gap-8 lg:grid-cols-[1fr_1fr]">
             <div className="space-y-5">
-              <div className="gfa-card p-6">
+              <div className="gfa-card p-6 gfa-reveal-io" style={{ transitionDelay: "120ms" }}>
                 <h3 className="gfa-h3 text-base font-semibold">Giờ làm việc</h3>
                 <p className="mt-2 text-sm text-[color:var(--gfa-mist)]">Thứ 2 – Chủ nhật: 8:00 – 17:00</p>
               </div>
-              <div className="gfa-card p-6">
+              <div className="gfa-card p-6 gfa-reveal-io" style={{ transitionDelay: "190ms" }}>
                 <h3 className="gfa-h3 text-base font-semibold">Trụ sở — Khu E</h3>
                 <p className="mt-2 text-sm text-[color:var(--gfa-mist)]">{ADDRESS_1}</p>
                 <a href={directionsUrl(ADDRESS_1)} target="_blank" rel="noreferrer" className="gfa-btn-outline mt-4 inline-block px-4 py-2 text-xs">
                   Chỉ đường trên Google Maps
                 </a>
               </div>
-              <div className="gfa-card p-6">
+              <div className="gfa-card p-6 gfa-reveal-io" style={{ transitionDelay: "260ms" }}>
                 <h3 className="gfa-h3 text-base font-semibold">Chi nhánh — Khu B</h3>
                 <p className="mt-2 text-sm text-[color:var(--gfa-mist)]">{ADDRESS_2}</p>
                 <a href={directionsUrl(ADDRESS_2)} target="_blank" rel="noreferrer" className="gfa-btn-outline mt-4 inline-block px-4 py-2 text-xs">
