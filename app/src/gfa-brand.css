@@ -46,3 +46,17 @@
   .gfa-headlight-sweep, .gfa-scrollcue::before, .gfa-fleet-marquee, .gfa-reveal { animation: none !important; }
   .gfa-hero-layer { transform: none !important; }
 }
+
+.gfa-hero-video-wrap { z-index: 1; overflow: hidden; }
+.gfa-hero-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 55%;
+  filter: saturate(1.05) contrast(1.03);
+}
+.gfa-hero-glow {
+  z-index: 2;
+  background: radial-gradient(45% 35% at 75% 30%, rgba(224,195,138,0.16), transparent 70%);
+  mix-blend-mode: screen;
+}

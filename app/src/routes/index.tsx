@@ -47,12 +47,16 @@ function Index() {
   const skyRef = useRef<HTMLDivElement>(null);
   const skylineRef = useRef<HTMLDivElement>(null);
   const roadRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
   const heroSectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduce) return;
+    if (reduce) {
+      videoRef.current?.pause();
+      return;
+    }
 
     let ticking = false;
     const onScroll = () => {
@@ -124,42 +128,21 @@ function Index() {
 
       <section id="top" ref={heroSectionRef} className="gfa-hero">
         <div ref={skyRef} className="gfa-hero-layer gfa-hero-sky" />
-        <div ref={skylineRef} className="gfa-hero-layer gfa-hero-skyline" aria-hidden="true">
-          <svg viewBox="0 0 1440 500" preserveAspectRatio="xMidYMax slice" className="h-full w-full">
-            <g fill="#0a0c10">
-              <rect x="40" y="260" width="70" height="240" /><rect x="130" y="200" width="55" height="300" />
-              <rect x="205" y="290" width="90" height="210" /><rect x="320" y="150" width="60" height="350" />
-              <rect x="400" y="240" width="80" height="260" /><rect x="510" y="190" width="50" height="310" />
-              <rect x="580" y="270" width="100" height="230" /><rect x="710" y="130" width="65" height="370" />
-              <rect x="800" y="230" width="85" height="270" /><rect x="910" y="270" width="60" height="230" />
-              <rect x="990" y="180" width="70" height="320" /><rect x="1080" y="250" width="95" height="250" />
-              <rect x="1200" y="200" width="55" height="300" /><rect x="1280" y="280" width="90" height="220" />
-              <rect x="1390" y="230" width="50" height="270" />
-            </g>
-            <g fill="#c4a05a" opacity="0.55">
-              <rect x="60" y="290" width="6" height="8" /><rect x="80" y="320" width="6" height="8" />
-              <rect x="150" y="240" width="6" height="8" /><rect x="330" y="190" width="6" height="8" />
-              <rect x="420" y="280" width="6" height="8" /><rect x="600" y="310" width="6" height="8" />
-              <rect x="730" y="170" width="6" height="8" /><rect x="820" y="270" width="6" height="8" />
-              <rect x="1010" y="220" width="6" height="8" /><rect x="1100" y="290" width="6" height="8" />
-              <rect x="1220" y="240" width="6" height="8" />
-            </g>
-          </svg>
+        <div ref={skylineRef} className="gfa-hero-layer gfa-hero-video-wrap" aria-hidden="true">
+          <video
+            ref={videoRef}
+            className="gfa-hero-video"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+            poster="/assets/poster.jpg"
+          >
+            <source src="/assets/hero.mp4" type="video/mp4" />
+          </video>
         </div>
-        <div ref={roadRef} className="gfa-hero-layer gfa-hero-road" aria-hidden="true">
-          <svg viewBox="0 0 1440 500" preserveAspectRatio="xMidYMax slice" className="h-full w-full">
-            <defs>
-              <linearGradient id="roadFade" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="#000" stopOpacity="0" />
-                <stop offset="100%" stopColor="#000" stopOpacity="0.9" />
-              </linearGradient>
-            </defs>
-            <path d="M0 500 L560 330 L880 330 L1440 500 Z" fill="#111319" />
-            <path d="M0 500 L560 330 L880 330 L1440 500 Z" fill="url(#roadFade)" />
-            <line x1="720" y1="340" x2="700" y2="500" stroke="#c4a05a" strokeWidth="4" strokeDasharray="16 14" opacity="0.5" />
-          </svg>
-          <div className="gfa-headlight-sweep" />
-        </div>
+        <div ref={roadRef} className="gfa-hero-layer gfa-hero-glow" aria-hidden="true" />
         <div className="gfa-hero-vignette" />
 
         <div className="gfa-hero-content mx-auto max-w-6xl px-5">
