@@ -86,6 +86,29 @@ function Index() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const els = document.querySelectorAll<HTMLElement>(".gfa-reveal-io");
+    if (reduce) {
+      els.forEach((el) => el.classList.add("is-visible"));
+      return;
+    }
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            io.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15, rootMargin: "0px 0px -60px 0px" },
+    );
+    els.forEach((el) => io.observe(el));
+    return () => io.disconnect();
+  }, []);
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "AutomotiveBusiness",
@@ -117,7 +140,9 @@ function Index() {
       <header className="gfa-nav">
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-3">
           <a href="#top" className="flex items-center gap-2">
-            <img src="/assets/favicon-48.png" alt="GFA Việt Nam" width={32} height={32} />
+            <span className="gfa-logo-badge" style={{ width: 34, height: 34 }}>
+              <img src="/assets/favicon-48.png" alt="GFA Việt Nam" width={24} height={24} />
+            </span>
             <span className="gfa-brand-word text-sm font-semibold tracking-wide">GFA VIỆT NAM</span>
           </a>
           <nav className="hidden items-center gap-6 text-sm md:flex">
@@ -275,7 +300,7 @@ function Index() {
                 </a>
               </div>
             </div>
-            <div className="gfa-map-frame min-h-[320px]">
+            <div className="gfa-map-frame min-h-[320px] gfa-reveal-io" style={{ transitionDelay: "160ms" }}>
               <iframe
                 title="Bản đồ GFA Việt Nam"
                 src={MAP_EMBED_SRC}
@@ -295,7 +320,9 @@ function Index() {
           <div className="grid gap-10 md:grid-cols-[1.2fr_1fr_1fr]">
             <div>
               <div className="flex items-center gap-2">
-                <img src="/assets/favicon-48.png" alt="GFA Việt Nam" width={30} height={30} />
+                <span className="gfa-logo-badge" style={{ width: 32, height: 32 }}>
+                  <img src="/assets/favicon-48.png" alt="GFA Việt Nam" width={22} height={22} />
+                </span>
                 <span className="gfa-brand-word text-sm font-semibold">CÔNG TY TNHH GFA VIỆT NAM</span>
               </div>
               <p className="mt-4 text-sm text-[color:var(--gfa-mist)] leading-relaxed">{ADDRESS_1}</p>
