@@ -60,3 +60,19 @@
   background: radial-gradient(45% 35% at 75% 30%, rgba(224,195,138,0.16), transparent 70%);
   mix-blend-mode: screen;
 }
+
+.gfa-fleet-card {
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid var(--gfa-line);
+  background: var(--gfa-charcoal);
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+.gfa-fleet-card:hover { transform: translateY(-4px); border-color: var(--gfa-gold); }
+.gfa-fleet-photo {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
+}
+.gfa-fleet-caption { padding: 1rem 1.1rem 1.25rem; }

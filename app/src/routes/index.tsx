@@ -43,6 +43,12 @@ const FLEET_BRANDS = [
   "Lexus", "Nissan", "Mitsubishi", "Daewoo", "Porsche", "Jaguar",
 ];
 
+const FLEET_MODELS = [
+  { name: "Toyota Camry", img: "/assets/fleet-camry.jpg", note: "Sedan hạng sang, phù hợp đón khách công tác và sự kiện." },
+  { name: "Toyota Fortuner", img: "/assets/fleet-fortuner.jpg", note: "SUV 7 chỗ, phù hợp gia đình và di chuyển đường dài." },
+  { name: "Toyota Innova", img: "/assets/fleet-innova.jpg", note: "MPV 7 chỗ, phù hợp đoàn khách và du lịch nhóm." },
+];
+
 function Index() {
   const skyRef = useRef<HTMLDivElement>(null);
   const skylineRef = useRef<HTMLDivElement>(null);
@@ -210,6 +216,25 @@ function Index() {
               <span key={`${b}-${i}`}>{b}</span>
             ))}
           </div>
+        </div>
+
+        <div className="mx-auto mt-16 max-w-6xl px-5">
+          <p className="gfa-eyebrow mb-3">Dòng xe tiêu biểu</p>
+          <h2 className="gfa-h2 max-w-xl text-3xl font-semibold sm:text-4xl">Một số dòng xe trong đội xe GFA</h2>
+          <div className="mt-10 grid gap-6 sm:grid-cols-3">
+            {FLEET_MODELS.map((m) => (
+              <div key={m.name} className="gfa-fleet-card">
+                <img src={m.img} alt={m.name} loading="lazy" className="gfa-fleet-photo" />
+                <div className="gfa-fleet-caption">
+                  <h3 className="gfa-h3 text-base font-semibold">{m.name}</h3>
+                  <p className="mt-1 text-xs text-[color:var(--gfa-mist)]">{m.note}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+          <p className="mt-4 text-xs text-[color:var(--gfa-mist)]">
+            Hình minh hoạ mang tính tham khảo, xe thực tế bàn giao có thể khác đôi chút tuỳ thời điểm.
+          </p>
         </div>
       </section>
 
