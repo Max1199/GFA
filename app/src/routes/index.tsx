@@ -49,6 +49,13 @@ const FLEET_MODELS = [
   { name: "Toyota Innova", img: "/assets/fleet-innova.jpg", note: "MPV 7 chỗ, phù hợp đoàn khách và du lịch nhóm." },
 ];
 
+const FACILITY_PHOTOS = [
+  { name: "Toà nhà GFA Building", img: "/assets/facility-building.jpg" },
+  { name: "Phòng họp", img: "/assets/facility-meeting.jpg" },
+  { name: "Không gian tiếp khách", img: "/assets/facility-lounge.jpg" },
+  { name: "Khu vực văn phòng", img: "/assets/facility-reception.jpg" },
+];
+
 function Index() {
   const skyRef = useRef<HTMLDivElement>(null);
   const skylineRef = useRef<HTMLDivElement>(null);
@@ -217,6 +224,34 @@ function Index() {
               <li><a href={`mailto:${EMAIL_1}`} className="gfa-navlink underline decoration-[color:var(--gfa-line)]">{EMAIL_1}</a></li>
               <li className="text-[color:var(--gfa-mist)]">Giờ làm việc: Thứ 2 – Chủ nhật, 8:00 – 17:00</li>
             </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="facilities" className="gfa-section">
+        <div className="mx-auto max-w-6xl px-5">
+          <p className="gfa-eyebrow mb-3 gfa-reveal-io">Cơ sở vật chất</p>
+          <h2 className="gfa-h2 max-w-xl text-3xl font-semibold sm:text-4xl gfa-reveal-io" style={{ transitionDelay: "60ms" }}>
+            Trụ sở &amp; văn phòng GFA
+          </h2>
+          <p className="mt-4 max-w-2xl text-sm text-[color:var(--gfa-mist)] leading-relaxed gfa-reveal-io" style={{ transitionDelay: "100ms" }}>
+            Hình ảnh thực tế tại trụ sở GFA Building, {ADDRESS_1}.
+          </p>
+          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {FACILITY_PHOTOS.map((p, i) => (
+              <div key={p.name} className="gfa-fleet-card gfa-reveal-io" style={{ transitionDelay: `${140 + i * 80}ms` }}>
+                <img
+                  src={p.img}
+                  alt={p.name}
+                  loading="lazy"
+                  className="gfa-fleet-photo"
+                  style={{ objectPosition: i === 0 ? "center 78%" : "center" }}
+                />
+                <div className="gfa-fleet-caption">
+                  <h3 className="gfa-h3 text-sm font-semibold">{p.name}</h3>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
