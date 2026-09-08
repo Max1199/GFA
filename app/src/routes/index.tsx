@@ -240,13 +240,15 @@ function Index() {
           <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {FACILITY_PHOTOS.map((p, i) => (
               <div key={p.name} className="gfa-fleet-card gfa-reveal-io" style={{ transitionDelay: `${140 + i * 80}ms` }}>
-                <img
-                  src={p.img}
-                  alt={p.name}
-                  loading="lazy"
-                  className="gfa-fleet-photo"
-                  style={{ objectPosition: i === 0 ? "center 78%" : "center" }}
-                />
+                <div className="gfa-photo-ratio">
+                  <img
+                    src={p.img}
+                    alt={p.name}
+                    loading="lazy"
+                    className="gfa-fleet-photo"
+                    style={{ objectPosition: i === 0 ? "center 78%" : "center" }}
+                  />
+                </div>
                 <div className="gfa-fleet-caption">
                   <h3 className="gfa-h3 text-sm font-semibold">{p.name}</h3>
                 </div>
@@ -284,7 +286,9 @@ function Index() {
           <div className="mt-10 grid gap-6 sm:grid-cols-3">
             {FLEET_MODELS.map((m, i) => (
               <div key={m.name} className="gfa-fleet-card gfa-reveal-io" style={{ transitionDelay: `${120 + i * 90}ms` }}>
-                <img src={m.img} alt={m.name} loading="lazy" className="gfa-fleet-photo" />
+                <div className="gfa-photo-ratio">
+                  <img src={m.img} alt={m.name} loading="lazy" className="gfa-fleet-photo" />
+                </div>
                 <div className="gfa-fleet-caption">
                   <h3 className="gfa-h3 text-base font-semibold">{m.name}</h3>
                   <p className="mt-1 text-xs text-[color:var(--gfa-mist)]">{m.note}</p>
